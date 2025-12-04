@@ -10,8 +10,21 @@
         {
             "src": "logo.png",
             "sizes": "500x500",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshots/Screenshot1.png",
+            "sizes": "1894x894",
             "type": "image/png",
-            "purpose": "any maskable"
+            "form_factor": "wide"
+        },
+        {
+            "src": "screenshots/Screenshot2.png",
+            "sizes": "480x766",
+            "type": "image/png",
+            "form_factor": "narrow"
         }
     ]
 }
