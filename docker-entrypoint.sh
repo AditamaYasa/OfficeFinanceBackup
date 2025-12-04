@@ -5,18 +5,17 @@ echo "[DEBUG] Starting entrypoint script..."
 
 if [ ! -f ".env" ]; then
     echo "[DEBUG] Creating .env from .env.example..."
-    cp .env.example .env || echo "[WARNING] .env.example not found"
+    cp .env.example .env 
 fi
 
-# Generate key jika belum ada
-if [ -z "$APP_KEY" ]; then
-    echo "Generating APP_KEY..."
-    php artisan key:generate
+echo "[DEBUG] Generating APP_KEY if needed..."
+if ! grep -q "APP_KEY=base64:" .env; then
+    php artisan key:generate --force
 fi
 
 # Jalankan migrations
 echo "[DEBUG] Running migrations..."
-php artisan migrate --force
+php artisan migrate --force || true
 
 # Start server
 echo "[DEBUG] Starting server..."
