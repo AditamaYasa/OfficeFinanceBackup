@@ -19,7 +19,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
-RUN cp .env.example .env
+RUN cp .env
 
 RUN composer install --no-dev --optimize-autoloader
 RUN php artisan key:generate
