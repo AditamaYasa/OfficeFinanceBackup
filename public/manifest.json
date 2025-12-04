@@ -1,0 +1,17 @@
+{
+    "name": "Tiga Jaya Finance",
+    "short_name": "TigaJaya",
+    "start_url": "/index.php",
+    "background_color": "#f5f5f5",
+    "description": "Web application Tiga Jaya Finance",
+    "display": "fullscreen",
+    "theme_color": "#0B3B9F",
+    "icons": [
+        {
+            "src": "logo.png",
+            "sizes": "500x500",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

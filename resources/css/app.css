@@ -1,0 +1,10 @@
+@import './Splash.css';
+@import './login.css';
+@import './dashboard.css';
+@import './kategori.css';
+@import './transaction.css';
+@import './slider-style.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,10 @@
+/* Efek hover dan animasi */
+.hover-translate {
+    transition: all 0.3s ease;
+}
+.hover-translate:hover {
+    transform: translateX(4px);
+}
+.rotate-180 {
+    transform: rotate(180deg);
+}
