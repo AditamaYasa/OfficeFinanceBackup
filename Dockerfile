@@ -19,7 +19,9 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader
+RUN php -r "file_exists('.env') || copy('.env.example', '.env');"
+RUN php artisan key:generate
 
 # Expose railway port (default 8080)
 EXPOSE 8080
