@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.2-cli
 
 # Install dependencies system
 RUN apt-get update && apt-get install -y \
@@ -19,7 +19,12 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
-RUN composer install --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader
+RUN php artisan key:generate
 RUN php artisan config:clear
 
-CMD ["php-fpm"]
+# Expose railway port (default 8080)
+EXPOSE 8080
+
+# Run Laravel server
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
