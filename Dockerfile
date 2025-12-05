@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     && pecl install swoole \
     && docker-php-ext-enable swoole
 
+RUN echo "extension=swoole.so" > /usr/local/etc/php/conf.d/swoole.ini
+
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
