@@ -27,6 +27,6 @@ COPY .env.example .env
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 8080
+EXPOSE 9000
 
 ENTRYPOINT ["docker-entrypoint.sh"]
