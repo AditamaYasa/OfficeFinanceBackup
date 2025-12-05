@@ -8,8 +8,13 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     zip \
+    libaio-dev \
+    pkg-config \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo_mysql zip
+
+    && pecl install swoole \
+    && docker-php-ext-enable swoole
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
