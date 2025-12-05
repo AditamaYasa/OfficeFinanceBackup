@@ -16,7 +16,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
-RUN composer require laravel/octane swoole --optimize-autoloader && \
+RUN composer require laravel/octane swoole --no-dev && \
     composer install --no-dev --optimize-autoloader
 
 RUN mkdir -p storage/logs bootstrap/cache && \
@@ -27,6 +27,6 @@ COPY .env.example .env
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 9000
+EXPOSE 8080
 
 ENTRYPOINT ["docker-entrypoint.sh"]
