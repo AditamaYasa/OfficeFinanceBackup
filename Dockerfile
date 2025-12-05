@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:8.2-fpm
 
 RUN apt-get update && apt-get install -y \
     libpng-dev \
@@ -8,15 +8,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     zip \
-    libaio-dev \
-    pkg-config \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo_mysql zip \
-    \
-    && pecl install swoole \
-    && docker-php-ext-enable swoole
-
-RUN echo "extension=swoole.so" > /usr/local/etc/php/conf.d/swoole.ini
+    && docker-php-ext-install gd pdo_mysql zip 
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -25,14 +18,6 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN mkdir -p storage/logs bootstrap/cache && \
-    chmod -R 777 storage bootstrap/cache
-    
-COPY .env.example .env
-
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 EXPOSE 8080
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
