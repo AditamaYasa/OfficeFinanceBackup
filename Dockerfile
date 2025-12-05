@@ -16,7 +16,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
-RUN composer require laravel/octane swoole --no-dev && \
+RUN composer require laravel/octane swoole --optimize-autoloader && \
     composer install --no-dev --optimize-autoloader
 
 RUN mkdir -p storage/logs bootstrap/cache && \
