@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y \
     libaio-dev \
     pkg-config \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo_mysql zip
-
+    && docker-php-ext-install gd pdo_mysql zip \
+    \
     && pecl install swoole \
     && docker-php-ext-enable swoole
 
