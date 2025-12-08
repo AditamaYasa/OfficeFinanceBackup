@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'TigaJaya Finance')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ vite_assets('resources/css/app.css') }}">
+    <script src="{{ vite_assets('resources/js/app.js') }}" type="module"></script>
 </head>
 <body class="h-screen flex items-center justify-center font-poppins bg-white">
     <img src="{{ asset('assets/picture/logo.png') }}" 
