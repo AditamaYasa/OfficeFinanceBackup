@@ -6,7 +6,10 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
-COPY . .
+COPY resources ./resources
+COPY vite.config.js .
+COPY postcss.config.js .
+
 RUN npm run build
 
 FROM php:8.2-fpm
@@ -30,6 +33,9 @@ COPY . .
 COPY --from=build-assets /app/public/build ./public/build
 
 RUN composer install --no-dev --optimize-autoloader
+
+RUN composer dump-autoload
+
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
