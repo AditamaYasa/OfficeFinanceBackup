@@ -1,9 +1,14 @@
 #!/bin/sh
 set -e
 
-if [ -z "$APP_KEY" ]; then
-  php artisan key:generate --force
+# If .env does not exist, create it from .env.example
+if [ ! -f .env ]; then
+    cp .env.example .env
 fi
 
-php-fpm -D
+# Generate APP_KEY only if empty
+if ! grep -q "APP_KEY=" .env || [ -z "$APP_KEY" ]; then
+    php artisan key:generate --force
+fi
+
 exec "$@"
