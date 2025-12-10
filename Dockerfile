@@ -27,10 +27,8 @@ RUN composer install --no-dev --optimize-autoloader
 RUN composer dump-autoload
 
 COPY default.conf /etc/nginx/sites-enabled/default
-
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENTRYPOINT ["docker-entrypoint.sh"]
