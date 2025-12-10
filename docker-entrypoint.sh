@@ -11,4 +11,11 @@ if ! grep -q "APP_KEY=" .env || [ -z "$APP_KEY" ]; then
     php artisan key:generate --force
 fi
 
+chown -R www-data:www-data /var/www/html/storage
+chown -R www-data:www-data /var/www/html/bootstrap/cache
+chmod -R 775 /var/www/html/storage
+chmod -R 775 /var/www/html/bootstrap/cache
+
+php-fpm -D
+
 exec "$@"
