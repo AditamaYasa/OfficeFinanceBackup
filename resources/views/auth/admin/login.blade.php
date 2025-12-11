@@ -75,6 +75,11 @@
                         Belum punya akun? <a href="{{ route('admin.register') }}" class="text-[#F20E0F] hover:underline">daftar</a>
                         disini.
                     </p>
+                    
+                    <p class="mt-3 text-xs sm:text-sm text-center whitespace-nowrap justify-center">
+                        Login User <a href="{{ route('login') }}" class="text-[#F20E0F] hover:underline">klik</a>
+                        disini.
+                    </p>
                 </form>
             </div>
         </section>
