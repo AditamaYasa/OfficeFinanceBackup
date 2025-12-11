@@ -31,8 +31,7 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN apt-get install -y gettext-base
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 8080
-CMD ["sh", "-c", "envsubst < /etc/nginx/sites-available/default > /etc/nginx/sites-enabled/default && supervisord -c /etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

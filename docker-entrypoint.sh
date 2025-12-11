@@ -6,8 +6,8 @@ if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
-# Generate APP_KEY only if empty
-if ! grep -q "APP_KEY=" .env || [ -z "$APP_KEY" ]; then
+if [ -z "$(grep '^APP_KEY=' .env | cut -d= -f2-)" ]; then
+    echo "Generating APP_KEY..."
     php artisan key:generate --force
 fi
 
@@ -20,7 +20,7 @@ php artisan migrate --force --no-interaction || true
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
-chmod -R 775 /var/www/html/bootstrap/cache
 
+php-fpm -D
 
 exec "$@"
